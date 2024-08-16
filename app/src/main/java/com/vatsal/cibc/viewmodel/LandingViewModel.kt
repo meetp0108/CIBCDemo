@@ -4,14 +4,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vatsal.cibc.model.Account
 import com.vatsal.cibc.service.repository.AccountRepository
-import com.vatsal.cibc.service.repository.AccountRespositoryImpl
+import com.vatsal.cibc.service.repository.AccountRepositoryImpl
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.util.concurrent.ExecutionException
 
 class LandingViewModel(
-    private val accountRepository: AccountRepository = AccountRespositoryImpl()
+    private val accountRepository: AccountRepository = AccountRepositoryImpl()
 ) : ViewModel() {
 
     private var _uiState = MutableStateFlow<LandingScreenUiState>(LandingScreenUiState.Loading)
@@ -28,6 +28,7 @@ class LandingViewModel(
                 _uiState.value = LandingScreenUiState.Success(result)
 
             }catch (e: ExecutionException){
+                e.printStackTrace()
                 _uiState.value = LandingScreenUiState.Error
             }
         }

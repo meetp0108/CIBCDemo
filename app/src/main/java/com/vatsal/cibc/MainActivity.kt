@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -31,12 +32,13 @@ import com.vatsal.cibc.RoutePath.LANDING_ROUTE
 import com.vatsal.cibc.model.Account
 import com.vatsal.cibc.ui.theme.CIBCTheme
 import com.vatsal.cibc.viewmodel.LandingScreenUiState
+import com.vatsal.cibc.viewmodel.LandingScreenUiState.*
 import com.vatsal.cibc.viewmodel.LandingViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+       // enableEdgeToEdge()
         setContent {
             CIBCTheme {
                 Surface {
@@ -57,13 +59,13 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun LandingScreen(
-    viewModel: LandingViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+    viewModel: LandingViewModel = viewModel()
 ){
     Scaffold { innerPadding ->
         val data = viewModel.uiState.collectAsState()
         when(data.value){
-            LandingScreenUiState.Error -> {}
-            LandingScreenUiState.Loading -> {
+            is Error -> {}
+            is Loading -> {
                 Column(
                     modifier = Modifier
                         .padding(innerPadding)
@@ -75,13 +77,13 @@ fun LandingScreen(
                     CircularProgressIndicator()
                 }
             }
-            is LandingScreenUiState.Success -> {
+            is Success -> {
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
                         .verticalScroll(rememberScrollState())
                 ) {
-                    (data.value as LandingScreenUiState.Success).accounts.forEach { account  ->
+                    (data.value as Success).accounts.forEach { account  ->
                         AccountItem(account = account){ account ->
 
                         }

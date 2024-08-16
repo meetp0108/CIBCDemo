@@ -3,7 +3,7 @@ package com.vatsal.cibc.service.repository
 import com.vatsal.cibc.model.Account
 import com.vatsal.cibc.service.RetrofitClient
 
-class AccountRespositoryImpl : AccountRepository {
+class AccountRepositoryImpl : AccountRepository {
 
     private val apiClient = RetrofitClient.apiClient
 
