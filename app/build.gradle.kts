@@ -61,31 +61,31 @@ dependencies {
     implementation(libs.androidx.material3)
 
     // Compose navigation
-    implementation ("androidx.navigation:navigation-compose:2.6.0")
+    implementation (libs.androidx.navigation.compose)
 
     // Kotlin Coroutines
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation (libs.kotlinx.coroutines.core)
+    implementation (libs.kotlinx.coroutines.android)
 
     // Retrofit
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation (libs.retrofit)
 
     // Moshi
-    implementation ("com.squareup.moshi:moshi:1.15.0")
-    implementation ("com.squareup.moshi:moshi-kotlin:1.15.0")
-    implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
+    implementation (libs.moshi)
+    implementation (libs.moshi.kotlin)
+    implementation (libs.converter.moshi)
 
     //Coroutine test
-    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1")
+    testImplementation (libs.kotlinx.coroutines.test)
 
     // AndroidX Test - Core Testing
-    testImplementation ("androidx.test:core:1.5.0")
-    testImplementation ("androidx.arch.core:core-testing:2.2.0")
+    testImplementation (libs.androidx.core)
+    testImplementation (libs.androidx.core.testing)
 
     // Mockito
-    testImplementation ("org.mockito:mockito-core:4.8.0")
+    testImplementation (libs.mockito.core)
     // Mockito-Kotlin for easier usage with Kotlin
-    testImplementation ("org.mockito.kotlin:mockito-kotlin:4.0.0")
+    testImplementation (libs.mockito.kotlin)
 
 
     testImplementation(libs.junit)

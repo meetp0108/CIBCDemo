@@ -38,16 +38,16 @@ import com.vatsal.cibc.viewmodel.LandingViewModel
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       // enableEdgeToEdge()
+        // enableEdgeToEdge()
         setContent {
             CIBCTheme {
                 Surface {
                     val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = LANDING_ROUTE ) {
-                        composable(LANDING_ROUTE){
+                    NavHost(navController = navController, startDestination = LANDING_ROUTE) {
+                        composable(LANDING_ROUTE) {
                             LandingScreen()
                         }
-                        composable(DETAIL_ROUTE){
+                        composable(DETAIL_ROUTE) {
                             DetailScreen()
                         }
                     }
@@ -60,10 +60,10 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun LandingScreen(
     viewModel: LandingViewModel = viewModel()
-){
+) {
     Scaffold { innerPadding ->
         val data = viewModel.uiState.collectAsState()
-        when(data.value){
+        when (data.value) {
             is Error -> {}
             is Loading -> {
                 Column(
@@ -77,14 +77,15 @@ fun LandingScreen(
                     CircularProgressIndicator()
                 }
             }
+
             is Success -> {
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
                         .verticalScroll(rememberScrollState())
                 ) {
-                    (data.value as Success).accounts.forEach { account  ->
-                        AccountItem(account = account){ account ->
+                    (data.value as Success).accounts.forEach { account ->
+                        AccountItem(account = account) { account ->
 
                         }
                     }
@@ -98,12 +99,14 @@ fun LandingScreen(
 @Composable
 fun AccountItem(
     account: Account,
-    onClickItem :(Account) -> Unit
-){
+    onClickItem: (Account) -> Unit
+) {
     Column(
-        modifier = Modifier.clickable {
-            onClickItem(account)
-        }.fillMaxWidth()
+        modifier = Modifier
+            .clickable {
+                onClickItem(account)
+            }
+            .fillMaxWidth()
             .padding(8.dp)
     ) {
         Text(text = account.name)
@@ -116,7 +119,7 @@ fun AccountItem(
 
 
 @Composable
-fun DetailScreen(){
+fun DetailScreen() {
     Scaffold { innerPadding ->
         Column(
             modifier = Modifier.padding(innerPadding)
@@ -126,6 +129,7 @@ fun DetailScreen(){
 
     }
 }
+
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
